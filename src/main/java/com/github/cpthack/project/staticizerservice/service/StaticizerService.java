@@ -15,26 +15,34 @@
  */
 package com.github.cpthack.project.staticizerservice.service;
 
+import java.util.LinkedHashMap;
+
 import org.springframework.stereotype.Service;
 
 import com.github.cptahck.commons.staticizer.core.StaticizerClient;
 import com.github.cptahck.commons.staticizer.core.StaticizerClientFactory;
 
-/** 
+/**
  * <b>StaticizerService.java</b></br>
- * <pre>TODO(这里用一句话描述这个类的作用)</pre>
+ * 
+ * <pre>
+ * 静态化业务逻辑处理类
+ * </pre>
  *
- * @author cpthack cpt@jianzhimao.com 
- * @date Apr 29, 2017 10:46:13 PM 
- * @since JDK 1.7 
-*/
+ * @author cpthack cpt@jianzhimao.com
+ * @date Apr 29, 2017 10:46:13 PM
+ * @since JDK 1.7
+ */
 @Service
 public class StaticizerService {
+	private final static StaticizerClient client = StaticizerClientFactory.getClient();
 	
-	public String getStaticizer(String url){
-		StaticizerClient client = StaticizerClientFactory.getClient();
-		return client.getMobilePageSource(url).getPageSource();
+	public String getStaticizer(String url) {
+		return getStaticizer(url, null);
 	}
 	
+	public String getStaticizer(String url, LinkedHashMap<String, String> requestHeaders) {
+		return client.getPageSource(url, requestHeaders).getPageSource();
+	}
 	
 }

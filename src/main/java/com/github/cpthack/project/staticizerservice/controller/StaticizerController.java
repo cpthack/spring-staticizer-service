@@ -15,12 +15,19 @@
  */
 package com.github.cpthack.project.staticizerservice.controller;
 
+import java.io.IOException;
+import java.util.LinkedHashMap;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.cpthack.project.staticizerservice.service.StaticizerService;
+import com.github.cpthack.project.staticizerservice.utils.JsonHelper;
 import com.github.cpthack.project.staticizerservice.utils.ResponseHelper;
 
 /**
@@ -42,15 +49,30 @@ public class StaticizerController {
 	
 	@RequestMapping(value = "${routes.controller.staticizer.pc}",
 	        method = { RequestMethod.POST, RequestMethod.GET })
-	public void pc(String url) {
-		String content = staticizerService.getStaticizer(url);
-		ResponseHelper.Success(content);
+	public void pc(String url, String requestHeaderJson) {
+		String result = null;
+		if (null == requestHeaderJson) {
+			result = staticizerService.getStaticizer(url);
+		}
+		else {
+			LinkedHashMap<String, String> requestHeaders = JsonHelper.toObject(requestHeaderJson, LinkedHashMap.class);
+			result = staticizerService.getStaticizer(url, requestHeaders);
+		}
+		
+//		response.setContentType("text/html;charset=UTF-8");
+//		try {
+//			response.getWriter().write(result);
+//			response.getWriter().close();
+//		}
+//		catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		ResponseHelper.Success(result);
 	}
-	
 	
 	@RequestMapping(value = "${routes.controller.staticizer.mobile}",
 	        method = { RequestMethod.POST, RequestMethod.GET })
-	public void mobile(String url) {
+	public void mobile(String url, String requestHeaderJsons) {
 		
 	}
 	

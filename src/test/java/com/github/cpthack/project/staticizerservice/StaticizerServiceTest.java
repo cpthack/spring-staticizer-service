@@ -15,8 +15,15 @@
  */
 package com.github.cpthack.project.staticizerservice;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.github.cpthack.project.staticizerservice.bean.ResponseResult;
+import com.github.cpthack.project.staticizerservice.utils.JsonHelper;
+import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 /**
@@ -33,20 +40,30 @@ import com.squareup.okhttp.Response;
 public class StaticizerServiceTest {
 	
 	public static void main(String[] args) {
+		String baseUrl = "http://localhost:8080/service/staticizer/pc";
+		Map<String,String> paramsMap = new HashMap<String,String>();
+		paramsMap.put("url", "https://www.jianzhimao.com");
 		for (int i = 0; i < 100; i++) {
-			String url = "http://localhost:8080/service/staticizer/pc?url=https://m.jianzhimao.com";
-			pcTest(url);
+			Test(baseUrl,paramsMap);
 			System.out.println("完成第[" + (i + 1) + "]次请求");
 		}
 	}
 	
-	public static void pcTest(String url) {
+	public static void Test(String baseUrl, Map<String, String> paramsMap) {
 		OkHttpClient client = new OkHttpClient();
 		long startTime = System.currentTimeMillis();
-		Request request = new Request.Builder().url(url).get().build();
+		
+		FormEncodingBuilder formEncodingBuilder = new FormEncodingBuilder();
+		for (String name : paramsMap.keySet()) {
+			formEncodingBuilder.add(name, paramsMap.get(name));
+		}
+		RequestBody formBody = formEncodingBuilder.build();
+		Request request = new Request.Builder().url(baseUrl).get().post(formBody).build();
 		try {
 			Response response = client.newCall(request).execute();
-			System.out.println(response.body().string());
+			ResponseResult result = JsonHelper.toObject(response.body().string(), ResponseResult.class);
+			System.out.println(result.getContent().get("obj"));
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();

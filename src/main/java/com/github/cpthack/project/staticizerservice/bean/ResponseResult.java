@@ -31,11 +31,11 @@ import java.util.Map;
  */
 public class ResponseResult {
 	
-	private String					code   = "200";
+	private String				code	= "200";
 	
-	private String				msg	   = "Request is successfully!";
+	private String				msg		= "Request is successfully!";
 	
-	private Map<String, Object>	contentMap = new HashMap<String, Object>();
+	private Map<String, Object>	content	= new HashMap<String, Object>();
 	
 	public String getCode() {
 		return code;
@@ -56,16 +56,16 @@ public class ResponseResult {
 	}
 	
 	public Map<String, Object> getContent() {
-		return contentMap;
+		return content;
 	}
 	
 	public ResponseResult setContent(Object obj) {
-		contentMap.put("obj", obj);
+		content.put("obj", obj);
 		return this;
 	}
 	
-	public ResponseResult setContent(String key,Object obj){
-		contentMap.put(key, obj);
+	public ResponseResult setContent(String key, Object obj) {
+		content.put(key, obj);
 		return this;
 	}
 	
