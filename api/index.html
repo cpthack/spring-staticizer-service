@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>README</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<!-- 该代码在生成html网页时，可以辅助生成左侧悬浮的目录导航 code start -->
+
+<script type="text/javascript" src="https://cpthack.github.io/self-dev-conf/api/doc-api.js"></script>
+
+<!-- 该代码在生成html网页时，可以辅助生成左侧悬浮的目录导航 code end -->
+
+<h1 id="toc_0">xxx系统接口文档</h1>
+
+<ul>
+<li><p>该文档是提供给第三方用户接入的指导说明.淘宝开放平台（Taobao Open Platform）是基于淘宝各类电子商务业务的开放平台，提供外部合作伙伴参与服务淘宝用户的各类原材料，例如API、账号体系、数据安全等。</p></li>
+<li><p>她是大淘宝电子商务基础服务的重要开放途径，将推动各行各业定制、创新、进化，并最终促成新商业文明生态圈的建立。我们的使命是把淘宝网的商品、用户、交易、物流等一系列电子商务基础服务，像水、电、煤一样输送给有需要的商家、开发者、社区媒体和各行各业。</p></li>
+</ul>
+
+<hr>
+
+<h2 id="toc_1">目录</h2>
+
+<p>[TOC]</p>
+
+<h2 id="toc_2">一、新手指引</h2>
+
+<ul>
+<li>Step 1: 获取App Key和App Secret</li>
+</ul>
+
+<blockquote>
+<p>请登录开发者平台（尚未注册？请点击这里），进入“管理中心”，确认自己的App Key和App Secret。</p>
+</blockquote>
+
+<div><pre><code class="language-none">    String appKey = &quot;5589931241&quot;;
+    String secret = &quot;db16adf193f2448ba0ec0260e0c968f3&quot;;  
+    //请替换为自己的 App Key 和 App secret  </code></pre></div>
+
+<ul>
+<li>Step 2: 确认请求参数</li>
+</ul>
+
+<blockquote>
+<p>查看API文档，确认请求参数。</p>
+</blockquote>
+
+<div><pre><code class="language-none">    String apiUrl = &quot;http://api.dianping.com/v1/business/find_businesses&quot;;  
+    paramMap.put(&quot;city&quot;, &quot;上海&quot;);  
+    paramMap.put(&quot;latitude&quot;, &quot;31.21524&quot;);  
+    paramMap.put(&quot;longitude&quot;, &quot;121.420033&quot;);  
+    paramMap.put(&quot;category&quot;, &quot;美食&quot;);  
+    paramMap.put(&quot;region&quot;, &quot;长宁区&quot;);  
+    paramMap.put(&quot;limit&quot;, &quot;20&quot;);  
+    paramMap.put(&quot;radius&quot;, &quot;2000&quot;);  
+    paramMap.put(&quot;offset_type&quot;, &quot;0&quot;);  
+    paramMap.put(&quot;has_coupon&quot;, &quot;1&quot;);  
+    paramMap.put(&quot;has_deal&quot;, &quot;1&quot;);  
+    paramMap.put(&quot;keyword&quot;, &quot;泰国菜&quot;);  
+    paramMap.put(&quot;sort&quot;, &quot;7&quot;);  
+    paramMap.put(&quot;format&quot;, &quot;json&quot;); 
+</code></pre></div>
+
+<ul>
+<li>Step 3: 确认请求参数</li>
+</ul>
+
+<blockquote>
+<p>调用点评API需要生成加密的请求签名，以防止API被盗用。开发者需要根据请求参数、App Key、App Secret生成签名， 注意这里使用Apache-Codec进行SHA1签名。</p>
+</blockquote>
+
+<div><pre><code class="language-none">    StringBuilder stringBuilder = new StringBuilder();  
+      
+    // 对参数名进行字典排序  
+    String[] keyArray = paramMap.keySet().toArray(new String[0]);  
+    Arrays.sort(keyArray);  
+    // 拼接有序的参数名-值串  
+    stringBuilder.append(appKey);  
+    for (String key : keyArray)  
+    {  
+        stringBuilder.append(key).append(paramMap.get(key));  
+    }  
+    String codes = stringBuilder.append(secret).toString();  
+    String sign = org.apache.commons.codec.digest.DigestUtils.shaHex(codes).toUpperCase();  
+</code></pre></div>
+
+<ul>
+<li>Step 4: 拼接请求URL </li>
+</ul>
+
+<blockquote>
+<p>将App Key、参数、生成的签名（即sign）以及API的访问路径（即apiUrl）拼接成一个URL。</p>
+</blockquote>
+
+<div><pre><code class="language-none">    // 添加签名  
+    stringBuilder = new StringBuilder();  
+    stringBuilder.append(&quot;appkey=&quot;).append(appKey).append(&quot;&amp;sign=&quot;).append(sign);  
+    for (Entry≶String, String&gt; entry : paramMap.entrySet())  
+    {  
+        stringBuilder.append(&#39;&amp;&#39;).append(entry.getKey()).append(&#39;=&#39;).append(entry.getValue());  
+    }  
+    String queryString = stringBuilder.toString();  
+</code></pre></div>
+
+<ul>
+<li>Step 5: 发起请求并获得返回结果<br></li>
+</ul>
+
+<blockquote>
+<p>根据API的属性，采用HTTP请求向服务器发起请求（目前所有API都使用GET方式获取数据）并获取响应结果。这里使用Apache-HttpClient，注意请求之前需要将请求参数进行UTF-8编码。</p>
+</blockquote>
+
+<div><pre><code class="language-none">    StringBuffer response = new StringBuffer();  
+    HttpClientParams httpConnectionParams = new HttpClientParams();  
+    httpConnectionParams.setConnectionManagerTimeout(1000);  
+    HttpClient client = new HttpClient(httpConnectionParams);  
+    HttpMethod method = new GetMethod(apiUrl);  
+      
+    BufferedReader reader = null;  
+    String encodeQuery = URIUtil.encodeQuery(queryString, &quot;UTF-8&quot;); // UTF-8 请求  
+    method.setQueryString(encodeQuery);  
+    client.executeMethod(method);  
+    reader = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream(), &quot;UTF-8&quot;));  
+    String line = null;  
+    while ((line = reader.readLine()) != null)  
+    {  
+        response.append(line).append(System.getProperty(&quot;line.separator&quot;));  
+    }  
+    reader.close();  
+    method.releaseConnection();  
+    System.out.println(response.toString());
+</code></pre></div>
+
+<h2 id="toc_3">二、应用接入规范</h2>
+
+<p>待后期补充。</p>
+
+<h2 id="toc_4">三、API文档</h2>
+
+<h3 id="toc_5">3.1 用户管理相关接口说明</h3>
+
+<h4 id="toc_6">3.1.1 增加用户</h4>
+
+<ul>
+<li><p><strong>请求URL</strong></p>
+
+<blockquote>
+<p><a href="#">api/v2/operating/addUser</a></p>
+</blockquote></li>
+<li><p><strong>请求方式</strong> </p>
+
+<blockquote>
+<p><strong>POST</strong></p>
+</blockquote></li>
+<li><p><strong>请求参数</strong></p></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">请求参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">uid</td>
+<td style="text-align: left">Long,<strong>不可为空</strong></td>
+<td style="text-align: left">用户UID</td>
+</tr>
+<tr>
+<td style="text-align: left">status</td>
+<td style="text-align: left">Integer,可为空</td>
+<td style="text-align: left">用户可用性，默认可用 <strong>-1.不可使用 1.可用</strong></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回数据</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">请求参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">success</td>
+<td style="text-align: left">boolean</td>
+<td style="text-align: left">请求成功与否</td>
+</tr>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">执行结果code</td>
+</tr>
+<tr>
+<td style="text-align: left">message</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">执行结果消息</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回示例</strong></li>
+</ul>
+
+<div><pre><code class="language-none">{
+  &quot;success&quot;: true,
+  &quot;code&quot;: 200,
+  &quot;message&quot;: &quot;操作正确&quot;
+}</code></pre></div>
+
+<h4 id="toc_7">3.1.2 查看用户</h4>
+
+<ul>
+<li><p><strong>请求URL</strong></p>
+
+<blockquote>
+<p><a href="#">api/v2/operating/userList</a></p>
+</blockquote></li>
+<li><p><strong>请求方式</strong> </p>
+
+<blockquote>
+<p><strong>GET</strong></p>
+</blockquote></li>
+<li><p><strong>请求参数</strong></p></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">请求参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">status</td>
+<td style="text-align: left">Integer,可为空</td>
+<td style="text-align: left">用户可用性 <strong>-1.不可使用 1.可用</strong></td>
+</tr>
+<tr>
+<td style="text-align: left">curPage</td>
+<td style="text-align: left">Integer,可为空</td>
+<td style="text-align: left">当前页</td>
+</tr>
+<tr>
+<td style="text-align: left">pageSize</td>
+<td style="text-align: left">Integer,可为空</td>
+<td style="text-align: left">每页显示数量</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回数据</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">返回参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">success</td>
+<td style="text-align: left">boolean</td>
+<td style="text-align: left">请求成功与否</td>
+</tr>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">执行结果code</td>
+</tr>
+<tr>
+<td style="text-align: left">message</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">执行结果消息</td>
+</tr>
+<tr>
+<td style="text-align: left">results</td>
+<td style="text-align: left">Object</td>
+<td style="text-align: left">执行结果集</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回示例</strong></li>
+</ul>
+
+<div><pre><code class="language-none">{
+  &quot;success&quot;: true,
+  &quot;code&quot;: 200,
+  &quot;message&quot;: &quot;操作正确&quot;,
+  &quot;results&quot;: [
+    {
+      &quot;createdTs&quot;: 1471928107000,
+      &quot;updatedTs&quot;: 1471928107000,
+      &quot;id&quot;: 3,
+      &quot;uid&quot;: 23333,
+      &quot;useStatus&quot;: 1,(使用状态)
+      &quot;nickName&quot;: &quot;成佩涛&quot;,
+      &quot;avatar&quot;: &quot;http://7xljdd.com2.z0.glb.qiniucdn.com/fa767b500c58206f5f213a0fe4187e47.jpg&quot;
+    }
+  ],
+  &quot;curPage&quot;: 1,
+  &quot;pageCount&quot;: 2,
+  &quot;count&quot;: 2,
+  &quot;hasRecords&quot;: true
+}</code></pre></div>
+
+<h4 id="toc_8">3.1.3 修改用户</h4>
+
+<ul>
+<li><p><strong>请求URL</strong></p>
+
+<blockquote>
+<p><a href="#">api/v2/operating/updateuser</a></p>
+</blockquote></li>
+<li><p><strong>请求方式</strong> </p>
+
+<blockquote>
+<p><strong>POST</strong></p>
+</blockquote></li>
+<li><p><strong>请求参数</strong></p></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">请求参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数与说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">uid</td>
+<td style="text-align: left">Long,<strong>不可为空</strong></td>
+<td style="text-align: left">用户UID</td>
+</tr>
+<tr>
+<td style="text-align: left">status</td>
+<td style="text-align: left">Integer,可为空</td>
+<td style="text-align: left">用户可用性 <strong>-1.不可使用 1.可用</strong></td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回数据</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">返回参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">success</td>
+<td style="text-align: left">boolean</td>
+<td style="text-align: left">执行成功与否</td>
+</tr>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">执行结果code</td>
+</tr>
+<tr>
+<td style="text-align: left">message</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">执行结果消息</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回示例</strong></li>
+</ul>
+
+<div><pre><code class="language-none">{
+  &quot;success&quot;: true,
+  &quot;code&quot;: 200,
+  &quot;message&quot;: &quot;操作正确&quot;
+}</code></pre></div>
+
+<h4 id="toc_9">3.1.4 删除用户</h4>
+
+<ul>
+<li><p><strong>请求URL</strong></p>
+
+<blockquote>
+<p><a href="#">api/v2/operating/deleteuser</a></p>
+</blockquote></li>
+<li><p><strong>请求方式</strong> </p>
+
+<blockquote>
+<p><strong>POST</strong></p>
+</blockquote></li>
+<li><p><strong>请求参数</strong></p></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">请求参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">uid</td>
+<td style="text-align: left">Long,<strong>不可为空</strong></td>
+<td style="text-align: left">用户UID</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回数据</strong></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">返回参数</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">success</td>
+<td style="text-align: left">boolean</td>
+<td style="text-align: left">请求成功与否</td>
+</tr>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: left">执行结果code</td>
+</tr>
+<tr>
+<td style="text-align: left">message</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">执行结果消息</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li><strong>返回示例</strong></li>
+</ul>
+
+<div><pre><code class="language-none">{
+  &quot;success&quot;: true,
+  &quot;code&quot;: 200,
+  &quot;message&quot;: &quot;操作正确&quot;
+}</code></pre></div>
+
+<h2 id="toc_10">四、常见问题指引</h2>
+
+<h3 id="toc_11">4.1 问题反馈</h3>
+
+<div><pre><code class="language-none">第三方开发者（简称ISV）可以通过淘宝开放平台（简称TOP）提供的ISV支持中心获取TOP技术人员的技术支持服务。
+
+通过ISV支持中心，您可以：
+
+  自助搜索和查看常见问题
+  在线提交问题给技术人员
+  在线提交任何需求和建议
+通过支持中心中获取技术支持是免费的，但是需要您注册成为TOP的开发者。
+
+如何注册成为开发者，请参考文档《注册成为开发者》。
+
+联系官方QQ：1044559878</code></pre></div>
+
+<h3 id="toc_12">4.2 接口返回码说明</h3>
+
+<h4 id="toc_13">4.2.1 系统级错误码</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">错误代码</th>
+<th style="text-align: left">返回msg</th>
+<th style="text-align: left">详细描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">400</td>
+<td style="text-align: left">系统错误，请稍候再试</td>
+<td style="text-align: left">请求参数有误</td>
+</tr>
+<tr>
+<td style="text-align: center">401</td>
+<td style="text-align: left">系统错误，请稍候再试</td>
+<td style="text-align: left">用户未登录</td>
+</tr>
+<tr>
+<td style="text-align: center">404</td>
+<td style="text-align: left">系统错误，请稍候再试</td>
+<td style="text-align: left">资源未找到</td>
+</tr>
+<tr>
+<td style="text-align: center">405</td>
+<td style="text-align: left">系统错误，请稍候再试</td>
+<td style="text-align: left">请求方法不支持</td>
+</tr>
+<tr>
+<td style="text-align: center">500</td>
+<td style="text-align: left">系统错误，请稍候再试</td>
+<td style="text-align: left">服务器错误</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="toc_14">4.2.2 业务级错误码</h4>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">错误代码</th>
+<th style="text-align: left">返回msg</th>
+<th style="text-align: left">详细描述</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">1010</td>
+<td style="text-align: left">xxxx</td>
+<td style="text-align: left">xxxx</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="toc_15">五、反馈与建议</h2>
+
+<ul>
+<li>GitHub地址：<a href="http://www.github.com/cpthack">@http://www.github.com/cpthack</a></li>
+<li>邮箱：<a href="mailto:1044559878@qq.com">1044559878@qq.com</a></li>
+</ul>
+
+
+
+
+</body>
+
+</html>
