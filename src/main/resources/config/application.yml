@@ -1,0 +1,7 @@
+apiConfig: #自定义API配置属性文件
+  name: 自定义API配置属性
+  keySecretMap:
+    - appKey: test
+      appSecret: xxxx3333xxx
+    - appKey: cpthack
+      appSecret: aaaabbbbcccc

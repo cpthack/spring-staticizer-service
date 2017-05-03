@@ -2,11 +2,11 @@
 <script type="text/javascript" src="https://cpthack.github.io/self-dev-conf/api/doc-api.js"></script>
 <!-- 该代码在生成html网页时，可以辅助生成左侧悬浮的目录导航 code end -->
 
-# xxx系统接口文档
+# spring-staticizer-service接口文档
 
--   该文档是提供给第三方用户接入的指导说明.淘宝开放平台（Taobao Open Platform）是基于淘宝各类电子商务业务的开放平台，提供外部合作伙伴参与服务淘宝用户的各类原材料，例如API、账号体系、数据安全等。
+-   **spring-staticizer-service** 是一个提供给站点实现静态化的服务。基于spring boot、[java-staticizer](https://github.com/cpthack/java-staticizer)、[JBrowserDriver](https://github.com/MachinePublishers/jBrowserDriver)等开源项目实现，使用方式简单。
 
--   她是大淘宝电子商务基础服务的重要开放途径，将推动各行各业定制、创新、进化，并最终促成新商业文明生态圈的建立。我们的使命是把淘宝网的商品、用户、交易、物流等一系列电子商务基础服务，像水、电、煤一样输送给有需要的商家、开发者、社区媒体和各行各业。
+-   基于spring boot 启动方式，可以独立部署，以restful api提供服务，支持跨平台使用，环境依赖：jdk1.8+。
    
 -------------------
 
@@ -115,7 +115,7 @@
 
 ##  三、API文档
 
-### 3.1 用户管理相关接口说明
+### 3.1 静态化相关接口说明
 #### 3.1.1 增加用户
 
 - **请求URL**

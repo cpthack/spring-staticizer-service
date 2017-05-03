@@ -16,9 +16,14 @@
 package com.github.cpthack.project.staticizerservice;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.github.cpthack.project.staticizerservice.bean.ResponseResult;
+import com.github.cpthack.project.staticizerservice.config.APIConfig;
 import com.github.cpthack.project.staticizerservice.utils.JsonHelper;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
@@ -39,12 +44,13 @@ import com.squareup.okhttp.Response;
  */
 public class StaticizerServiceTest {
 	
-	public static void main(String[] args) {
+	public static void main(String []arg) {
+		
 		String baseUrl = "http://localhost:8080/service/staticizer/pc";
-		Map<String,String> paramsMap = new HashMap<String,String>();
+		Map<String, String> paramsMap = new HashMap<String, String>();
 		paramsMap.put("url", "https://www.jianzhimao.com");
 		for (int i = 0; i < 100; i++) {
-			Test(baseUrl,paramsMap);
+			Test(baseUrl, paramsMap);
 			System.out.println("完成第[" + (i + 1) + "]次请求");
 		}
 	}
