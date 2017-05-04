@@ -37,12 +37,15 @@ import com.github.cptahck.commons.staticizer.core.StaticizerClientFactory;
 public class StaticizerService {
 	private final static StaticizerClient client = StaticizerClientFactory.getClient();
 	
-	public String getStaticizer(String url) {
-		return getStaticizer(url, null);
+	public String getPageSource(String url) {
+		return getPageSource(url, null);
 	}
 	
-	public String getStaticizer(String url, LinkedHashMap<String, String> requestHeaders) {
+	public String getPageSource(String url, LinkedHashMap<String, String> requestHeaders) {
 		return client.getPageSource(url, requestHeaders).getPageSource();
 	}
 	
+	public String getMobilePageSource(String url) {
+		return client.getMobilePageSource(url).getPageSource();
+	}
 }

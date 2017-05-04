@@ -15,26 +15,21 @@
  */
 package com.github.cpthack.project.staticizerservice.controller;
 
-import java.io.IOException;
-import java.util.LinkedHashMap;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.cpthack.project.staticizerservice.service.StaticizerService;
-import com.github.cpthack.project.staticizerservice.utils.JsonHelper;
 import com.github.cpthack.project.staticizerservice.utils.ResponseHelper;
 
 /**
  * <b>StaticizerController.java</b></br>
  * 
  * <pre>
- * 静态化实现 对外Rest API类
+ * 静态化服务控制器(静态化实现 对外Rest API类)，职责：
+ * 1、只负责处理接受参数；
+ * 2、规范已知的参数规则；
+ * 3、返回结果值；
  * </pre>
  *
  * @author cpthack cpt@jianzhimao.com
@@ -45,35 +40,31 @@ import com.github.cpthack.project.staticizerservice.utils.ResponseHelper;
 public class StaticizerController {
 	
 	@Autowired
-	private StaticizerService staticizerService;
+	private StaticizerControllerHelper controllerHelper;
 	
 	@RequestMapping(value = "${routes.controller.staticizer.pc}",
 	        method = { RequestMethod.POST, RequestMethod.GET })
 	public void pc(String url, String requestHeaderJson) {
-		String result = null;
-		if (null == requestHeaderJson) {
-			result = staticizerService.getStaticizer(url);
-		}
-		else {
-			LinkedHashMap<String, String> requestHeaders = JsonHelper.toObject(requestHeaderJson, LinkedHashMap.class);
-			result = staticizerService.getStaticizer(url, requestHeaders);
-		}
-		
-//		response.setContentType("text/html;charset=UTF-8");
-//		try {
-//			response.getWriter().write(result);
-//			response.getWriter().close();
-//		}
-//		catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		int i=1/0;
+		String result = controllerHelper.pc(url, requestHeaderJson);
 		ResponseHelper.success(result);
+		
+		// response.setContentType("text/html;charset=UTF-8");
+		// try {
+		// response.getWriter().write(result);
+		// response.getWriter().close();
+		// }
+		// catch (IOException e) {
+		// e.printStackTrace();
+		// }
 	}
 	
 	@RequestMapping(value = "${routes.controller.staticizer.mobile}",
 	        method = { RequestMethod.POST, RequestMethod.GET })
-	public void mobile(String url, String requestHeaderJsons) {
+	public void mobile(String url, String requestHeaderJson) {
 		
+		String result = controllerHelper.mobile(url, requestHeaderJson);
+		ResponseHelper.success(result);
 	}
 	
 }
