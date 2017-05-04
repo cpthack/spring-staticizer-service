@@ -67,7 +67,7 @@ public class StaticizerController {
 //		catch (IOException e) {
 //			e.printStackTrace();
 //		}
-		ResponseHelper.Success(result);
+		ResponseHelper.success(result);
 	}
 	
 	@RequestMapping(value = "${routes.controller.staticizer.mobile}",

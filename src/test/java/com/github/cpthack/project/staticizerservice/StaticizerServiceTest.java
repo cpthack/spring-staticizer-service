@@ -16,15 +16,11 @@
 package com.github.cpthack.project.staticizerservice;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.github.cpthack.project.staticizerservice.bean.ResponseResult;
-import com.github.cpthack.project.staticizerservice.config.APIConfig;
 import com.github.cpthack.project.staticizerservice.utils.JsonHelper;
+import com.github.cpthack.project.staticizerservice.utils.MD5SignHelper;
 import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -35,7 +31,7 @@ import com.squareup.okhttp.Response;
  * <b>StaticizerServiceTest.java</b></br>
  * 
  * <pre>
- * TODO(这里用一句话描述这个类的作用)
+ * 静态服务测试类
  * </pre>
  *
  * @author cpthack cpt@jianzhimao.com
@@ -44,15 +40,25 @@ import com.squareup.okhttp.Response;
  */
 public class StaticizerServiceTest {
 	
-	public static void main(String []arg) {
+	public static void main(String[] arg) {
 		
 		String baseUrl = "http://localhost:8080/service/staticizer/pc";
+		String url = "https://www.jianzhimao.com";
+		String timestamp = String.valueOf(System.currentTimeMillis());
+		String appKey = "test";
+		String appSecret = "xxxx3333xxx";
 		Map<String, String> paramsMap = new HashMap<String, String>();
-		paramsMap.put("url", "https://www.jianzhimao.com");
-		for (int i = 0; i < 100; i++) {
+		paramsMap.put("url", url);
+		paramsMap.put("timestamp", timestamp);
+		paramsMap.put("appKey", appKey);
+		String sign = MD5SignHelper.sign(paramsMap, "appSecret", appSecret);
+		paramsMap.put("sign", sign);
+		long startTime = System.currentTimeMillis();
+		for (int i = 0; i < 10; i++) {
 			Test(baseUrl, paramsMap);
 			System.out.println("完成第[" + (i + 1) + "]次请求");
 		}
+		System.out.println("总的请求完成时间, time = [" + (System.currentTimeMillis() - startTime)/1000 + "] s.");
 	}
 	
 	public static void Test(String baseUrl, Map<String, String> paramsMap) {
@@ -68,7 +74,11 @@ public class StaticizerServiceTest {
 		try {
 			Response response = client.newCall(request).execute();
 			ResponseResult result = JsonHelper.toObject(response.body().string(), ResponseResult.class);
-			System.out.println(result.getContent().get("obj"));
+			System.out.println("获取到的返回信息如下：");
+			System.out.println("code = [" + result.getCode() + "]");
+			System.out.println("msg = [" + result.getMsg() + "]");
+			if (null != result.getContent())
+				System.out.println("content = [" + result.getContent() + "]");
 			
 		}
 		catch (Exception e) {

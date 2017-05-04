@@ -15,6 +15,8 @@
  */
 package com.github.cpthack.project.staticizerservice.exception;
 
+import com.github.cpthack.project.staticizerservice.bean.ResponseResult;
+
 /**
  * <b>BussinessException.java</b></br>
  * 
@@ -30,7 +32,13 @@ public class BussinessException extends ApplicationException {
 	
 	private static final long serialVersionUID = -873631143382257801L;
 	
-	private Object obj = null;
+	private Object			  obj			   = null;
+	
+	private ResponseResult	  result		   = null;
+	
+	public BussinessException() {
+		super();
+	}
 	
 	public BussinessException(Throwable t) {
 		super(t);
@@ -40,17 +48,32 @@ public class BussinessException extends ApplicationException {
 		super(message);
 	}
 	
-	public BussinessException(String message,Throwable t) {
-		super(message,t);
+	public BussinessException(String message, Throwable t) {
+		super(message, t);
 	}
 	
-	
-	public BussinessException(Object obj){
-		this.obj=obj;
+	public BussinessException(String code, String message) {
+		super(code, message);
 	}
-
+	
+	public BussinessException(Object obj) {
+		this.obj = obj;
+	}
+	
 	public Object getObj() {
 		return obj;
+	}
+	
+	public void setObj(Object obj) {
+		this.obj = obj;
+	}
+	
+	public ResponseResult getResult() {
+		return result;
+	}
+	
+	public void setResult(ResponseResult result) {
+		this.result = result;
 	}
 	
 }

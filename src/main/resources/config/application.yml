@@ -1,7 +1,21 @@
 apiConfig: #自定义API配置属性文件
   name: 自定义API配置属性
+  appKeyName: appKey #开发者账号唯一标识码的参数名称
+  appSecretName: appSecret #密钥的参数名称
+  signName: sign #MD5签名的字符串的参数名称
+  timestampName:  timestamp #时间戳的参数名称
+  codeName: code #返回状态码的参数名称
+  msgName:  msg #返回信息的参数名称
   keySecretMap:
     - appKey: test
       appSecret: xxxx3333xxx
     - appKey: cpthack
       appSecret: aaaabbbbcccc
+  codeMsgMap:
+    - code: 000
+      msg: 请求成功了.
+    - code: 500
+      msg: 请求失败.
+    - code: 403
+      msg: 签名失败.
+      
