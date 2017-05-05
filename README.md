@@ -106,94 +106,60 @@
 ##  三、API文档
 
 ### 3.1 静态化相关接口说明
-#### 3.1.1 增加用户
+#### 3.1.1 获取静态文件内容(支持PC访问的站点)
 
 - **请求URL**
->[api/v2/operating/addUser](#)
+>[http://localhost:8080/service/staticizer/pc](#)
 
 - **请求方式** 
 >**POST**
 
 - **请求参数**
 
-| 请求参数   |  参数类型 | 参数说明  |
-| :-------- | :--------| :------ |
-| uid|  Long,**不可为空**| 用户UID|
-| status|   Integer,可为空|  用户可用性，默认可用 **-1.不可使用 1.可用**|
+| 请求参数   | 是否必须 | 参数类型| 限制长度| 参数说明  |
+| :-------- |  :--------| :--------| :--------| :------ |
+| appKey | YES | String| 255 | 接口appKey，应用的唯一标识|
+| timestamp | YES | String| 20 | 服务器当前时间，1970-01-01开始的时间戳，毫秒为单位，示例：1493999757188|
+| sign | YES | String| 255 | MD5签名,将URL中每个参数值和appSecret（appSecret在服务端配置文件中可查看密钥）按照参数名称升序，拼接然后md5转码 详见MD5签名规则|
+| url | YES | String| 500 | 待静态化的目标站点URL|
+| requestHeaderJson | NO | Json| 1000 | 请求头信息JSON数组，一般使用方式，程序获取到客户端请求中的请求头信息之后，转成LinkHashMap<String,String>数组数据，并转成JSON对象，以达到能够真正模拟客户端访问的状态|
 
 - **返回数据**
  
-| 请求参数   |  参数类型 | 参数说明  |
-| :-------- | :--------| :------ |
-| success|   boolean|  请求成功与否|
-| code|   Integer|  执行结果code|
-| message|   String|  执行结果消息|
+| 参数   | 是否必须 | 参数类型| 限制长度| 参数说明  |
+| :-------- |  :--------| :--------| :--------| :------ |
+| code | YES | String| 25 | 状态码，000表示常规的成功状态.500表示常规的失败状态，其他状态码请参考[4.2 接口返回码说明](#)|
+| msg | YES | String| 100 | 返回的处理消息.|
+| content | NO | obj| N/A | 返回的具体数据值.一般从content中取出obj属性的数据，示例：result.getContent().get("obj")|
 
 - **返回示例**
 
+> 请求成功示例
+
 ```
 {
-  "success": true,
-  "code": 200,
-  "message": "操作正确"
+	"code":"200",
+	"msg":"request is successfully!",
+	"content":{
+		"obj":"<html class=\"pixel-ratio-1\"><head>\n\t<title>兼职猫</title>\n\t \n\n\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\n<link rel=\"shortcut icon\" href=\"/favicon.ico\">\n<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n<meta content=\"telephone=no\" name=\"format-detection\">\n<meta content=\"email=no\" name=\"format-detection\">\n<meta http-equiv=\"Cache-Control\" content=\"no-siteapp\">\n<link rel=\"icon\" href=\"http://oss.aliyuncs.com/jianzhimao/web-res/icon/jianzhimao-logo-min.png\" type=\"image/x-icon\">\n<link rel=\"shortcut icon\" href=\"http://oss.aliyuncs.com/jianzhimao/web-res/icon/jianzhimao-logo-min.png\" type=\"image/x-icon\">\n<link rel=\"stylesheet\" href=\"https://img.jianzhimao.com/static/m3/common/light7/css/light7.css?v=0e6a8c6\">\n<link rel=\"stylesheet\" href=\"https://img.jianzhimao.com/static/m3/common/light7/css/light7-swiper.min.css?v=aab697c\">\n<link rel=\"stylesheet\" href=\"https://img.jianzhimao.com/static/m3/static/css/job.css?v=58a22cd\">\n\n\n</head>\n\n<body>\n<div id=\"job_index_page\" class=\"page-group \"><div id=\"page_index\" class=\"page page-current page-inited\"></body></html>"
+		}
 }
 ```
+> 请求失败示例
 
-#### 3.1.2 查看用户
-
-- **请求URL**
-> [api/v2/operating/userList](#)
-
-
-- **请求方式** 
->**GET**
-
-- **请求参数**
-
-| 请求参数      |    参数类型 |  参数说明  |
-| :-------- | :--------| :------ |
-| status|   Integer,可为空| 用户可用性 **-1.不可使用 1.可用**|
-| curPage|   Integer,可为空|  当前页|
-| pageSize|   Integer,可为空|  每页显示数量|
-
-- **返回数据**
-
-| 返回参数   |  参数类型 |  参数说明 |
-| :-------- | :--------| :------ |
-| success|   boolean|  请求成功与否|
-| code|   Integer|  执行结果code|
-| message|   String|  执行结果消息|
-| results|   Object|  执行结果集|
-
-- **返回示例**
-  
 ```
 {
-  "success": true,
-  "code": 200,
-  "message": "操作正确",
-  "results": [
-    {
-      "createdTs": 1471928107000,
-      "updatedTs": 1471928107000,
-      "id": 3,
-      "uid": 23333,
-      "useStatus": 1,(使用状态)
-      "nickName": "成佩涛",
-      "avatar": "http://7xljdd.com2.z0.glb.qiniucdn.com/fa767b500c58206f5f213a0fe4187e47.jpg"
-    }
-  ],
-  "curPage": 1,
-  "pageCount": 2,
-  "count": 2,
-  "hasRecords": true
+    "code": "500",
+    "msg": "appkey不能为空.",
+    "content": null
 }
+
 ```
 
-#### 3.1.3 修改用户
+#### 3.1.2 获取静态文件内容(仅支持手机端访问的站点)
 
 - **请求URL**
-> [api/v2/operating/updateuser](#)
+> [http://localhost:8080/service/staticizer/mobile](#)
 
 
 - **请求方式** 
@@ -201,80 +167,72 @@
 
 - **请求参数**
 
-| 请求参数    |    参数类型 |  参数与说明  |
-| :-------- | :--------| :------ |
-| uid|   Long,**不可为空**| 用户UID|
-| status|   Integer,可为空| 用户可用性 **-1.不可使用 1.可用**|
+| 请求参数   | 是否必须 | 参数类型| 限制长度| 参数说明  |
+| :-------- |  :--------| :--------| :--------| :------ |
+| appKey | YES | String| 255 | 接口appKey，应用的唯一标识|
+| timestamp | YES | String| 20 | 服务器当前时间，1970-01-01开始的时间戳，毫秒为单位，示例：1493999757188|
+| sign | YES | String| 255 | MD5签名,将URL中每个参数值和appSecret（appSecret在服务端配置文件中可查看密钥）按照参数名称升序，拼接然后md5转码 详见MD5签名规则|
+| url | YES | String| 500 | 待静态化的目标站点URL|
+| requestHeaderJson | NO | Json| 1000 | 请求头信息JSON数组，一般使用方式，程序获取到客户端请求中的请求头信息之后，转成LinkHashMap<String,String>数组数据，并转成JSON对象，以达到能够真正模拟客户端访问的状态|
 
 - **返回数据**
-
-| 返回参数  |   参数类型 |  参数说明 |
-| :-------- | :--------| :------ |
-| success|   boolean|  执行成功与否|
-| code|   Integer| 执行结果code|
-| message|   String|  执行结果消息|
-
-- **返回示例**
-   
-```
-{
-  "success": true,
-  "code": 200,
-  "message": "操作正确"
-}
-```
-
-#### 3.1.4 删除用户
-
-- **请求URL**
-> [api/v2/operating/deleteuser](#)
-
-
-- **请求方式** 
->**POST**
-
-- **请求参数**
-
-| 请求参数   |   参数类型 |  参数说明  |
-| :-------- | :--------| :------ |
-| uid|   Long,**不可为空**| 用户UID|
-
-- **返回数据**
-
-| 返回参数   |   参数类型 |   参数说明  |
-| :-------- | :--------| :------ |
-| success|   boolean| 请求成功与否|
-| code|   Integer|  执行结果code|
-| message|   String| 执行结果消息|
+ 
+| 参数   | 是否必须 | 参数类型| 限制长度| 参数说明  |
+| :-------- |  :--------| :--------| :--------| :------ |
+| code | YES | String| 25 | 状态码，000表示常规的成功状态.500表示常规的失败状态，其他状态码请参考[4.2 接口返回码说明](#)|
+| msg | YES | String| 100 | 返回的处理消息.|
+| content | NO | obj| N/A | 返回的具体数据值.一般从content中取出obj属性的数据，示例：result.getContent().get("obj")|
 
 - **返回示例**
   
+> 请求成功示例
+
 ```
 {
-  "success": true,
-  "code": 200,
-  "message": "操作正确"
+	"code":"200",
+	"msg":"request is successfully!",
+	"content":{
+		"obj":"<html class=\"pixel-ratio-1\"><head>\n\t<title>兼职猫</title>\n\t \n\n\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">\n<link rel=\"shortcut icon\" href=\"/favicon.ico\">\n<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n<meta content=\"telephone=no\" name=\"format-detection\">\n<meta content=\"email=no\" name=\"format-detection\">\n<meta http-equiv=\"Cache-Control\" content=\"no-siteapp\">\n<link rel=\"icon\" href=\"http://oss.aliyuncs.com/jianzhimao/web-res/icon/jianzhimao-logo-min.png\" type=\"image/x-icon\">\n<link rel=\"shortcut icon\" href=\"http://oss.aliyuncs.com/jianzhimao/web-res/icon/jianzhimao-logo-min.png\" type=\"image/x-icon\">\n<link rel=\"stylesheet\" href=\"https://img.jianzhimao.com/static/m3/common/light7/css/light7.css?v=0e6a8c6\">\n<link rel=\"stylesheet\" href=\"https://img.jianzhimao.com/static/m3/common/light7/css/light7-swiper.min.css?v=aab697c\">\n<link rel=\"stylesheet\" href=\"https://img.jianzhimao.com/static/m3/static/css/job.css?v=58a22cd\">\n\n\n</head>\n\n<body>\n<div id=\"job_index_page\" class=\"page-group \"><div id=\"page_index\" class=\"page page-current page-inited\"></body></html>"
+		}
 }
 ```
+> 请求失败示例
 
+```
+{
+    "code": "500",
+    "msg": "appkey不能为空.",
+    "content": null
+}
+
+```
 
 ##  四、常见问题指引
 
 ### 4.1 问题反馈
-	
-	第三方开发者（简称ISV）可以通过淘宝开放平台（简称TOP）提供的ISV支持中心获取TOP技术人员的技术支持服务。
-	
-	通过ISV支持中心，您可以：
-	
-	  自助搜索和查看常见问题
-	  在线提交问题给技术人员
-	  在线提交任何需求和建议
-	通过支持中心中获取技术支持是免费的，但是需要您注册成为TOP的开发者。
-	
-	如何注册成为开发者，请参考文档《注册成为开发者》。
-	
-	联系官方QQ：1044559878
 
+
+-	appKey、appSecret可以在classpath:conf/application.yml文件中增加配置，可以不限增加多个appKey、appSecret数组对数据，示例如下：
+
+```	
+	keySecretMap:
+    - appKey: test
+      appSecret: xxxx3333xxx
+    - appKey: cpthack
+      appSecret: aaaabbbbcccc
+```	
+-  静态化服务对外API路由支持可配置，目前配置项主要存在classpath:application.properties文件中，你可以直接在application.properties文件中自定义路由名称，示例如下：
+
+```
+	#系统全局路由配置
+	#配置静态化staticizerController中index方法的对外API名称(常规pc站点)
+	routes.controller.staticizer.pc=/service/staticizer/pc
+	#配置静态化staticizerController中index方法的对外API名称(仅移动站点访问)
+	routes.controller.staticizer.mobile=/service/staticizer/mobile
+
+```
+-  如果您在开发过程中遇到问题，可以直接email到我的邮箱：1044559878@qq.com.
+	
 
 ### 4.2 接口返回码说明
 

@@ -43,8 +43,10 @@ public class StaticizerServiceTest {
 	
 	public static void main(String[] arg) {
 		String serviceUrl = "http://localhost:8080/service/staticizer/pc";
+		System.out.println(System.currentTimeMillis());
 		// pcTest(serviceUrl);
 		mobileTest(serviceUrl);
+		
 	}
 	
 	private static void mobileTest(String serviceUrl) {
@@ -111,12 +113,13 @@ public class StaticizerServiceTest {
 		Request request = new Request.Builder().url(baseUrl).post(formBody).build();
 		try {
 			Response response = client.newCall(request).execute();
+			System.out.println(response.body().string());
 			ResponseResult result = JsonHelper.toObject(response.body().string(), ResponseResult.class);
 			System.out.println("获取到的返回信息如下：");
 			System.out.println("code = [" + result.getCode() + "]");
 			System.out.println("msg = [" + result.getMsg() + "]");
 			if (null != result.getContent())
-				System.out.println("content = [" + result.getContent() + "]");
+				System.out.println("content = [" + result.getContent().get("obj") + "]");
 			
 		}
 		catch (Exception e) {
