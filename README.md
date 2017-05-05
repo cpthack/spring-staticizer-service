@@ -7,6 +7,7 @@
 -   **spring-staticizer-service** 是一个提供给站点实现静态化的服务。基于spring boot、[java-staticizer](https://github.com/cpthack/java-staticizer)、[JBrowserDriver](https://github.com/MachinePublishers/jBrowserDriver)等开源项目实现，使用方式简单。
 
 -   基于spring boot 启动方式，可以独立部署，以restful api提供服务，支持跨平台使用，环境依赖：jdk1.8+。
+-   在线文档地址[点此](https://cpthack.github.io/spring-staticizer-service/api/)
    
 -------------------
 
