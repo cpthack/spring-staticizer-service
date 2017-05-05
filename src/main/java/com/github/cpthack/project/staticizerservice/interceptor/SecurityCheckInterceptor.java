@@ -72,15 +72,15 @@ public class SecurityCheckInterceptor implements HandlerInterceptor {
 		Map<String, String[]> ParameterMap = request.getParameterMap();// 请求体中所有的参数集合
 		
 		Map<String, String> paramMap = new HashMap<String, String>();// 转化参数集合
-		logger.debug(String.format("请求参数, "
-				+ "url: %s, method: %s, uri: %s, params: %s", url, method, uri, queryString));
+		logger.debug(String.format("请求参数, " + "url: %s, method: %s, uri: %s, params: %s", url, method, uri, queryString));
 		for (String name : ParameterMap.keySet()) {
-			
 			// 拼接参数值字符串并进行utf-8解码，防止中文乱码
-			paramMap.put(name, URLDecoder.decode(ParameterMap.get(name)[0], "UTF-8"));
+			// paramMap.put(name, URLDecoder.decode(ParameterMap.get(name)[0], "UTF-8"));
+			paramMap.put(name, ParameterMap.get(name)[0]);
 			
-			// logger.debug("requestBody中的请求数据，KEY = [" + name + "]");
-			// logger.debug("requestBody中的请求数据，VALUE = [" + ParameterMap.get(name)[0] + "]");
+			logger.debug("requestBody中的请求数据，KEY = [" + name + "]");
+			logger.debug("requestBody中的请求数据，VALUE = [" + ParameterMap.get(name)[0] + "]");
+			logger.debug("requestBody中的请求数据，VALUE = [" + URLDecoder.decode(ParameterMap.get(name)[0], "UTF-8") + "]");
 		}
 		
 		String appKey = paramMap.get(apiConfig.getAppKeyName());

@@ -19,11 +19,11 @@
 
 - Step 1: 获取App Key和App Secret
 
-> 请登录开发者平台（尚未注册？请点击这里），进入“管理中心”，确认自己的App Key和App Secret。
+> 请在静态化服务配置文件[application.yml](https://github.com/cpthack/spring-staticizer-service/blob/master/src/main/resources/config/application.yml)，确认自己的App Key和App Secret，可以继续往配置文件中新增配置项。
 
 ```
-	String appKey = "5589931241";
-	String secret = "db16adf193f2448ba0ec0260e0c968f3";  
+	String appKey = "cpthack";
+	String secret = "aaaabbbbcccc";  
 	//请替换为自己的 App Key 和 App secret  
 ```
 - Step 2: 确认请求参数
@@ -31,81 +31,71 @@
 > 查看API文档，确认请求参数。
 
 ```
-	String apiUrl = "http://api.dianping.com/v1/business/find_businesses";  
-	paramMap.put("city", "上海");  
-	paramMap.put("latitude", "31.21524");  
-	paramMap.put("longitude", "121.420033");  
-	paramMap.put("category", "美食");  
-	paramMap.put("region", "长宁区");  
-	paramMap.put("limit", "20");  
-	paramMap.put("radius", "2000");  
-	paramMap.put("offset_type", "0");  
-	paramMap.put("has_coupon", "1");  
-	paramMap.put("has_deal", "1");  
-	paramMap.put("keyword", "泰国菜");  
-	paramMap.put("sort", "7");  
-	paramMap.put("format", "json"); 
+	// 构造参数列表
+	String url = "https://m.jianzhimao.com/job";
+	String timestamp = String.valueOf(System.currentTimeMillis());
+	String appKey = "test";
+	String appSecret = "xxxx3333xxx";
+	Map<String, String> paramsMap = new HashMap<String, String>();
+	paramsMap.put("url", url);
+	paramsMap.put("timestamp", timestamp);
+	paramsMap.put("appKey", appKey);
+	
+	// 自定义添加请求头信息
+	Map<String, String> requestHeadersMap = new LinkedHashMap<String, String>();
+	requestHeadersMap.put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.36");
+	requestHeadersMap.put("Cookie", "ipcity=guangzhou; isw=1; isp=1; ism=1; UM_distinctid=15b991d8b504-0d54f3feabfe08-143d655c-13c680-15b991d8b51109; gr_user_id=759e16e4-e3f9-41c2-a693-e2ee6773bf6f; Hm_lvt_447f87add4dbd73deca17a45d8536dbd=1493304116,1493639091,1493640218,1493734506; JSESSIONID=5CE5267F02C4808AC6D03C39482DE696; gr_session_id_b0d18e1f996f733e=eedd0007-ea93-48c6-ab46-dbff5d37e975; gr_cs1_eedd0007-ea93-48c6-ab46-dbff5d37e975=user_id%3A; CNZZDATA1254075128=1655583782-1492924156-%7C1493908763; Hm_lvt_c48dcbb8f7a6cb176845ad3439189ed0=1492924831,1493389363,1493912467; Hm_lpvt_c48dcbb8f7a6cb176845ad3439189ed0=1493912467; m_location_info=%2C%E5%B9%BF%E5%B7%9E%2C");
+	String requestHeaderJson = JsonHelper.toJson(requestHeadersMap);
+	paramsMap.put("requestHeaderJson", requestHeaderJson);
 
 ```
 - Step 3: 确认请求参数
 
-> 调用点评API需要生成加密的请求签名，以防止API被盗用。开发者需要根据请求参数、App Key、App Secret生成签名， 注意这里使用Apache-Codec进行SHA1签名。
+> 调用加密API生成加密的请求签名，以防止API被盗用。开发者需要根据请求参数、App Key、App Secret生成签名， 注意这里使用Apache-Codec进行MD5签名。
 
 ```
-	StringBuilder stringBuilder = new StringBuilder();  
-	  
-	// 对参数名进行字典排序  
-	String[] keyArray = paramMap.keySet().toArray(new String[0]);  
-	Arrays.sort(keyArray);  
-	// 拼接有序的参数名-值串  
-	stringBuilder.append(appKey);  
-	for (String key : keyArray)  
-	{  
-	    stringBuilder.append(key).append(paramMap.get(key));  
-	}  
-	String codes = stringBuilder.append(secret).toString();  
-	String sign = org.apache.commons.codec.digest.DigestUtils.shaHex(codes).toUpperCase();  
+	StringBuilder valueSb = new StringBuilder();
+	params.put(appSecretName, appSecret);
+	// 将参数以参数名的字典升序排序
+	Map<String, String> sortParams = new TreeMap<String, String>(params);
+	Set<Entry<String, String>> entrys = sortParams.entrySet();
+	// 遍历排序的字典,并拼接value1+value2......格式
+	for (Entry<String, String> entry : entrys) {
+		valueSb.append(entry.getValue());
+	}
+	params.remove(appSecretName);
+	return md5(valueSb.toString());
 
 ```
-- Step 4: 拼接请求URL 
 
-> 将App Key、参数、生成的签名（即sign）以及API的访问路径（即apiUrl）拼接成一个URL。
+- Step 4: 发起请求并获得返回结果  
 
-```
-	// 添加签名  
-	stringBuilder = new StringBuilder();  
-	stringBuilder.append("appkey=").append(appKey).append("&sign=").append(sign);  
-	for (Entry≶String, String> entry : paramMap.entrySet())  
-	{  
-	    stringBuilder.append('&').append(entry.getKey()).append('=').append(entry.getValue());  
-	}  
-	String queryString = stringBuilder.toString();  
+> 根据API的属性，采用HTTP请求向服务器发起请求（目前所有API都使用POST方式获取数据）并获取响应结果。这里使用okHttp,将App Key、参数、生成的签名（即sign)、时间戳（即timestamp）作为参数，并针对特定API的访问路径（即serviceUrl）进行请求。
 
 ```
-- Step 5: 发起请求并获得返回结果  
-
-> 根据API的属性，采用HTTP请求向服务器发起请求（目前所有API都使用GET方式获取数据）并获取响应结果。这里使用Apache-HttpClient，注意请求之前需要将请求参数进行UTF-8编码。
-
-```
-	StringBuffer response = new StringBuffer();  
-	HttpClientParams httpConnectionParams = new HttpClientParams();  
-	httpConnectionParams.setConnectionManagerTimeout(1000);  
-	HttpClient client = new HttpClient(httpConnectionParams);  
-	HttpMethod method = new GetMethod(apiUrl);  
-	  
-	BufferedReader reader = null;  
-	String encodeQuery = URIUtil.encodeQuery(queryString, "UTF-8"); // UTF-8 请求  
-	method.setQueryString(encodeQuery);  
-	client.executeMethod(method);  
-	reader = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream(), "UTF-8"));  
-	String line = null;  
-	while ((line = reader.readLine()) != null)  
-	{  
-	    response.append(line).append(System.getProperty("line.separator"));  
-	}  
-	reader.close();  
-	method.releaseConnection();  
-	System.out.println(response.toString());
+	OkHttpClient client = new OkHttpClient();
+		
+	long startTime = System.currentTimeMillis();
+	
+	FormEncodingBuilder formEncodingBuilder = new FormEncodingBuilder();
+	for (String name : paramsMap.keySet()) {
+		formEncodingBuilder.add(name, paramsMap.get(name));
+	}
+	RequestBody formBody = formEncodingBuilder.build();
+	Request request = new Request.Builder().url(baseUrl).post(formBody).build();
+	try {
+		Response response = client.newCall(request).execute();
+		ResponseResult result = JsonHelper.toObject(response.body().string(), ResponseResult.class);
+		System.out.println("获取到的返回信息如下：");
+		System.out.println("code = [" + result.getCode() + "]");
+		System.out.println("msg = [" + result.getMsg() + "]");
+		if (null != result.getContent())
+			System.out.println("content = [" + result.getContent() + "]");
+		
+	}
+	catch (Exception e) {
+		e.printStackTrace();
+	}
 
 ```
 

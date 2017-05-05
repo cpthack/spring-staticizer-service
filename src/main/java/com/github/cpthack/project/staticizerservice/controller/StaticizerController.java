@@ -45,7 +45,6 @@ public class StaticizerController {
 	@RequestMapping(value = "${routes.controller.staticizer.pc}",
 	        method = { RequestMethod.POST, RequestMethod.GET })
 	public void pc(String url, String requestHeaderJson) {
-		int i=1/0;
 		String result = controllerHelper.pc(url, requestHeaderJson);
 		ResponseHelper.success(result);
 		
