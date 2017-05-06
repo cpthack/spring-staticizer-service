@@ -112,7 +112,7 @@
 - **请求URL**
 >[http://localhost:8080/service/staticizer/pc](#)
 
-- **请求方式** 
+- **请求方式** 
 >**POST**
 
 - **请求参数**
@@ -131,7 +131,7 @@
 | :-------- |  :--------| :--------| :--------| :------ |
 | code | YES | String| 25 | 状态码，000表示常规的成功状态.500表示常规的失败状态，其他状态码请参考[4.2 接口返回码说明](#)|
 | msg | YES | String| 100 | 返回的处理消息.|
-| content | NO | obj| N/A | 返回的具体数据值.一般从content中取出obj属性的数据，示例：result.getContent().get("obj")|
+| content | NO | Object| N/A | 返回的具体数据值.一般从content中取出obj属性的数据，示例：result.getContent().get("obj")|
 
 - **返回示例**
 
@@ -182,7 +182,7 @@
 | :-------- |  :--------| :--------| :--------| :------ |
 | code | YES | String| 25 | 状态码，000表示常规的成功状态.500表示常规的失败状态，其他状态码请参考[4.2 接口返回码说明](#)|
 | msg | YES | String| 100 | 返回的处理消息.|
-| content | NO | obj| N/A | 返回的具体数据值.一般从content中取出obj属性的数据，示例：result.getContent().get("obj")|
+| content | NO | Object| N/A | 返回的具体数据值.一般从content中取出obj属性的数据，示例：result.getContent().get("obj")|
 
 - **返回示例**
   
