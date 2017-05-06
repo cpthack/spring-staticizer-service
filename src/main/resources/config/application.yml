@@ -13,9 +13,9 @@ apiConfig: #自定义API配置属性文件
       appSecret: aaaabbbbcccc
   codeMsgMap:
     - code: 000
-      msg: 请求成功了.
+      msg: 请求成功.
     - code: 500
-      msg: 请求失败.
+      msg: 请求失败，服务器发生异常.
     - code: 403
-      msg: 签名失败.
+      msg: 禁止访问.签名失败.
       
