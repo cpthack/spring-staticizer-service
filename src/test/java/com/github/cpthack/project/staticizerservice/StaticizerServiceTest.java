@@ -43,7 +43,6 @@ public class StaticizerServiceTest {
 	
 	public static void main(String[] arg) {
 		String serviceUrl = "http://localhost:8080/service/staticizer/pc";
-		System.out.println(System.currentTimeMillis());
 		// pcTest(serviceUrl);
 		mobileTest(serviceUrl);
 		
@@ -123,7 +122,7 @@ public class StaticizerServiceTest {
 			
 		}
 		catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		System.out.println("耗时：" + (System.currentTimeMillis() - startTime) + " ms");
 	}
